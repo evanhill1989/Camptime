@@ -4,8 +4,10 @@ export const selectAllCampsites = () => {
     return CAMPSITES;
 }
 
-export const selectRandomCampsite = ()=> {
-     const campsite = CAMPSITES[Math.floor(Math.random()*CAMPSITES.length)];
-    
-    return campsite;
+export const selectCampsiteById = (id) => {
+    return CAMPSITES.find((campsite) => campsite.id === parseInt(id));
+};
+
+export const selectFeaturedCampsite = () =>{
+    return CAMPSITES.find((campsite) => campsite.featured)
 }

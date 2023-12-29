@@ -1,19 +1,32 @@
 
 
-import CamptimeLogo from './app/assets/img/Camptime_Logo.png';
+
 // import otherLogo from './app/assets/img/logo.png';
 import './App.css';
-import CampsiteList  from './features/campsites/CampsitesList';
-import CampsitesList from './features/campsites/CampsitesList';
+import CampsitesDirectoryPage from './pages/CampsitesDirectoryPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import ContactPage from './pages/ContactPage';
+import { Route, Routes } from 'react-router-dom';
+import CampsiteDetailPage from './pages/CampsiteDetailPage';
 
 
 function App() {
     return (
         <div className='App'>
             <Header />
-            <CampsitesList />
+            <Routes>
+                <Route path ='/' element={<HomePage/>}/>
+                <Route path ='contact' element={<ContactPage/>}/>
+                <Route path ='directory' element={<CampsitesDirectoryPage/>}/>
+                <Route  
+                    path='directory/:campsiteId'
+                    element={<CampsiteDetailPage />}
+                />
+                
+            </Routes>
+            
             <Footer/>
         </div>
     );
