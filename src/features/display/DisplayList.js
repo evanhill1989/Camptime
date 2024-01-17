@@ -1,25 +1,31 @@
-import { Col, Row } from 'reactstrap';
-import DisplayCard from './DisplayCard';
-import { selectFeaturedCampsite } from '../campsites/campsitesSlice';
-import { selectFeaturedPromotion } from '../promotions/promotionsSlice';
-import { selectFeaturedPartner } from '../partners/partnersSlice';
-
+import { Col, Row } from "reactstrap";
+import DisplayCard from "./DisplayCard";
+import { selectFeaturedCampsite } from "../campsites/campsitesSlice";
+import { selectFeaturedPromotion } from "../promotions/promotionsSlice";
+import { selectFeaturedPartner } from "../partners/partnersSlice";
+import { useSelector } from "react-redux";
 
 const DisplayList = () => {
+  useSelector((state) => console.log(state));
+  const items = useSelector((state) => [
+    selectFeaturedCampsite(state),
+    selectFeaturedPromotion(state),
+    selectFeaturedPartner(state),
+  ]);
 
-    const items = [selectFeaturedCampsite(), selectFeaturedPromotion(), selectFeaturedPartner()];
+  console.log("display:items", items);
 
-    return(
-        <Row>
-            {items.map((item, idx) => {
-                return (
-                    <Col md className='m-1' key={idx}>
-                        <DisplayCard item={item} />
-                    </Col>
-                )
-            })}
-        </Row>
-    )
-}
+  return (
+    <Row>
+      {items.map((item, idx) => {
+        return (
+          <Col md className="m-1" key={idx}>
+            <DisplayCard item={item} />
+          </Col>
+        );
+      })}
+    </Row>
+  );
+};
 
 export default DisplayList;
